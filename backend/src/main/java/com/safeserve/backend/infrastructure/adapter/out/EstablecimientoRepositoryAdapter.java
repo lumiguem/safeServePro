@@ -2,7 +2,7 @@ package com.safeserve.backend.infrastructure.adapter.out;
 
 import com.safeserve.backend.domain.model.Establecimiento;
 import com.safeserve.backend.domain.port.out.EstablecimientoRepositoryPort;
-import com.safeserve.backend.infrastructure.adapter.out.mapper.EstablecimientoMapper;
+import com.safeserve.backend.infrastructure.adapter.mapper.EstablecimientoMapper;
 import com.safeserve.backend.infrastructure.persistance.repository.EstablecimientoJpaRepository;
 import org.springframework.stereotype.Repository;
 

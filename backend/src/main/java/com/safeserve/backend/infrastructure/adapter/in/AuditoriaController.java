@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auditorias")
+@CrossOrigin(origins = "http://localhost:5173")
 public class AuditoriaController {
 
     private final CreateAuditoriaPort createAuditoriaPort;

@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/establecimientos")
+@CrossOrigin(origins = "http://localhost:5173")
 public class EstablecimientoController {
 
     private final ListEstablecimientosUseCase listUseCase;

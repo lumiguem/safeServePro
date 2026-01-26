@@ -1,4 +1,4 @@
-package com.safeserve.backend.infrastructure.adapter.out.mapper;
+package com.safeserve.backend.infrastructure.adapter.mapper;
 
 import com.safeserve.backend.domain.model.Establecimiento;
 import com.safeserve.backend.infrastructure.persistance.entity.EstablecimientoEntity;

@@ -22,3 +22,9 @@ logging:
   level:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+security:
+  jwt:
+    secret: TDSZydxbpLTzBiSyAdfK6qzd8nBt9WeOFBO-Pi7NO5X1IWgLA594XmYEj99lEK_ZEyKKs2dkmIe8g1dFBYuQJg
+    access-token-expiration: 900000  # 15 minutos en milisegundos
+    refresh-token-expiration: 900000  # 15 minutos en milisegundos

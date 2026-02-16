@@ -3,10 +3,11 @@ package com.safeserve.backend.application.usecase.plantilla;
 import com.safeserve.backend.application.dto.CreatePlantillaRequest;
 import com.safeserve.backend.domain.model.Plantilla;
 import com.safeserve.backend.domain.model.PlantillaItem;
-import com.safeserve.backend.domain.port.out.PlantillaRepositoryPort;
+import com.safeserve.backend.domain.repository.out.PlantillaRepositoryPort;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 public class CreatePlantillaUseCase {
 
@@ -28,8 +29,13 @@ public class CreatePlantillaUseCase {
                 ))
                 .toList();
 
+        String plantillaId = request.getId();
+        if (plantillaId == null || plantillaId.isBlank()) {
+            plantillaId = "TPL-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+        }
+
         Plantilla plantilla = new Plantilla(
-                request.getId(),
+                plantillaId,
                 request.getTitulo(),
                 request.getCategoria(),
                 request.getDescripcion(),

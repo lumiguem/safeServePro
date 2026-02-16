@@ -2,8 +2,8 @@ package com.safeserve.backend.application.usecase;
 
 
 import com.safeserve.backend.domain.model.Auditoria;
-import com.safeserve.backend.domain.port.in.CreateAuditoriaPort;
-import com.safeserve.backend.domain.port.out.AuditoriaRepositoryPort;
+import com.safeserve.backend.domain.repository.in.CreateAuditoriaPort;
+import com.safeserve.backend.domain.repository.out.AuditoriaRepositoryPort;
 
 import java.util.UUID;
 

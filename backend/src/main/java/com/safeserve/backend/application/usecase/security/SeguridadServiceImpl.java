@@ -2,7 +2,7 @@ package com.safeserve.backend.application.usecase.security;
 
 
 import com.safeserve.backend.domain.model.security.SeguridadModel;
-import com.safeserve.backend.domain.port.in.security.SeguridadService;
+import com.safeserve.backend.domain.repository.in.security.SeguridadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

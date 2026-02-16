@@ -3,7 +3,7 @@ package com.safeserve.backend.infrastructure.security;
 
 import com.safeserve.backend.domain.model.security.RolModel;
 import com.safeserve.backend.domain.model.security.UsuarioModel;
-import com.safeserve.backend.domain.port.in.security.TokenService;
+import com.safeserve.backend.domain.repository.in.security.TokenService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;

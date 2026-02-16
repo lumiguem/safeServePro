@@ -6,7 +6,7 @@ import com.safeserve.backend.infrastructure.security.CustomUserDetails;
 import com.safeserve.backend.domain.model.security.SeguridadModel;
 import com.safeserve.backend.domain.model.security.UsuarioModel;
 import com.safeserve.backend.domain.model.security.exception.CredencialesInvalidasException;
-import com.safeserve.backend.domain.port.in.security.TokenService;
+import com.safeserve.backend.domain.repository.in.security.TokenService;
 import com.safeserve.backend.infrastructure.security.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

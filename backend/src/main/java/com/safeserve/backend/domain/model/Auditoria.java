@@ -5,6 +5,9 @@ public class Auditoria {
     private final String id;
     private final String establecimientoId;
     private final String plantillaId;
+    private final String establecimientoNombre;
+    private final String plantillaLabel;
+    private final long numeroHallazgos;
     private int progreso;
     private int puntuacionCumplimiento;
 
@@ -13,6 +16,9 @@ public class Auditoria {
         this.id = id;
         this.establecimientoId = establecimientoId;
         this.plantillaId = plantillaId;
+        this.establecimientoNombre = null;
+        this.plantillaLabel = null;
+        this.numeroHallazgos = 0;
         this.progreso = 0;
         this.puntuacionCumplimiento = 0;
     }
@@ -28,6 +34,29 @@ public class Auditoria {
         this.id = id;
         this.establecimientoId = establecimientoId;
         this.plantillaId = plantillaId;
+        this.establecimientoNombre = null;
+        this.plantillaLabel = null;
+        this.numeroHallazgos = 0;
+        this.progreso = progreso;
+        this.puntuacionCumplimiento = puntuacionCumplimiento;
+    }
+
+    public Auditoria(
+            String id,
+            String establecimientoId,
+            String establecimientoNombre,
+            String plantillaId,
+            String plantillaLabel,
+            long numeroHallazgos,
+            int progreso,
+            int puntuacionCumplimiento
+    ) {
+        this.id = id;
+        this.establecimientoId = establecimientoId;
+        this.establecimientoNombre = establecimientoNombre;
+        this.plantillaId = plantillaId;
+        this.plantillaLabel = plantillaLabel;
+        this.numeroHallazgos = numeroHallazgos;
         this.progreso = progreso;
         this.puntuacionCumplimiento = puntuacionCumplimiento;
     }
@@ -42,6 +71,18 @@ public class Auditoria {
 
     public String getPlantillaId() {
         return plantillaId;
+    }
+
+    public String getEstablecimientoNombre() {
+        return establecimientoNombre;
+    }
+
+    public String getPlantillaLabel() {
+        return plantillaLabel;
+    }
+
+    public long getNumeroHallazgos() {
+        return numeroHallazgos;
     }
 
     public int getProgreso() {

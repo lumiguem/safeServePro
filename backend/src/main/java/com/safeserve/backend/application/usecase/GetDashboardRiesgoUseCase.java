@@ -1,7 +1,7 @@
 package com.safeserve.backend.application.usecase;
 
 
-import com.safeserve.backend.domain.port.out.EstablecimientoRepositoryPort;
+import com.safeserve.backend.domain.repository.out.EstablecimientoRepositoryPort;
 
 public class GetDashboardRiesgoUseCase {
 

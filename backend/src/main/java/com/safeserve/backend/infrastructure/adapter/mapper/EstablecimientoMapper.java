@@ -1,7 +1,7 @@
 package com.safeserve.backend.infrastructure.adapter.mapper;
 
 import com.safeserve.backend.domain.model.Establecimiento;
-import com.safeserve.backend.infrastructure.persistance.entity.EstablecimientoEntity;
+import com.safeserve.backend.infrastructure.persistence.entity.EstablecimientoEntity;
 
 public class EstablecimientoMapper {
 

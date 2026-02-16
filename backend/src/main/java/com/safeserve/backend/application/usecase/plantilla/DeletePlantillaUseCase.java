@@ -1,6 +1,6 @@
 package com.safeserve.backend.application.usecase.plantilla;
 
-import com.safeserve.backend.domain.port.out.PlantillaRepositoryPort;
+import com.safeserve.backend.domain.repository.out.PlantillaRepositoryPort;
 
 public class DeletePlantillaUseCase {
 

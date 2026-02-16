@@ -3,8 +3,8 @@ package com.safeserve.backend.infrastructure.adapter.out.security;
 
 import com.safeserve.backend.domain.model.security.RolModel;
 import com.safeserve.backend.domain.model.security.UsuarioModel;
-import com.safeserve.backend.domain.port.out.security.UsuarioRepository;
-import com.safeserve.backend.infrastructure.persistance.repository.security.UsuarioRepositoryJpa;
+import com.safeserve.backend.domain.repository.out.security.UsuarioRepository;
+import com.safeserve.backend.infrastructure.persistence.repository.security.UsuarioRepositoryJpa;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;

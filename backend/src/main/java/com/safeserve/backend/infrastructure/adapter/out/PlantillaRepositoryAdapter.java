@@ -1,9 +1,9 @@
 package com.safeserve.backend.infrastructure.adapter.out;
 
 import com.safeserve.backend.domain.model.Plantilla;
-import com.safeserve.backend.domain.port.out.PlantillaRepositoryPort;
+import com.safeserve.backend.domain.repository.out.PlantillaRepositoryPort;
 import com.safeserve.backend.infrastructure.adapter.mapper.PlantillaMapper;
-import com.safeserve.backend.infrastructure.persistance.repository.PlantillaJpaRepository;
+import com.safeserve.backend.infrastructure.persistence.repository.PlantillaJpaRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +32,8 @@ public class PlantillaRepositoryAdapter implements PlantillaRepositoryPort {
 
     @Override
     public void save(Plantilla plantilla) {
-        throw new UnsupportedOperationException("Implementar en siguiente iteración");
+        var entity = PlantillaMapper.toEntity(plantilla);
+        repository.save(entity);
     }
 
     @Override

@@ -3,8 +3,8 @@ package com.safeserve.backend.domain.model;
     public class Establecimiento {
 
     private final String id;
-    private final String nombre;
-    private final String direccion;
+    private String nombre;
+    private String direccion;
     private int riesgoActual;
 
     public Establecimiento(String id, String nombre, String direccion, int riesgoActual) {
@@ -32,5 +32,11 @@ package com.safeserve.backend.domain.model;
 
     public void actualizarRiesgo(int nuevoRiesgo) {
         this.riesgoActual = nuevoRiesgo;
+    }
+
+    public void actualizarDatos(String nombre, String direccion, int riesgoActual) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.riesgoActual = riesgoActual;
     }
 }

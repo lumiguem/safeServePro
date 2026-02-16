@@ -1,7 +1,7 @@
 package com.safeserve.backend.infrastructure.security;
 
 
-import com.safeserve.backend.domain.port.in.security.TokenService;
+import com.safeserve.backend.domain.repository.in.security.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

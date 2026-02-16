@@ -1,7 +1,7 @@
 package com.safeserve.backend.infrastructure.security;
 
 
-import com.safeserve.backend.domain.port.out.security.UsuarioRepository;
+import com.safeserve.backend.domain.repository.out.security.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

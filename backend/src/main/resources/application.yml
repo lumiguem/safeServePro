@@ -1,13 +1,9 @@
+# ===============================================================
+# CONFIGURACIÓN COMÚN A TODOS LOS PERFILES
+# ===============================================================
 spring:
   application:
     name: safeserve-backend
-
-  datasource:
-    url: jdbc:mysql://localhost:3306/safeserve_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-    username: root
-    password: ${Password}
-    driver-class-name: com.mysql.cj.jdbc.Driver
-
   jpa:
     hibernate:
       ddl-auto: none   # MUY IMPORTANTE
@@ -17,6 +13,12 @@ spring:
       hibernate:
         format_sql: true
 
+server:
+  port: ${PORT:8080}
+
+app:
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
 
 logging:
   level:
@@ -25,6 +27,30 @@ logging:
 
 security:
   jwt:
-    secret: TDSZydxbpLTzBiSyAdfK6qzd8nBt9WeOFBO-Pi7NO5X1IWgLA594XmYEj99lEK_ZEyKKs2dkmIe8g1dFBYuQJg
-    access-token-expiration: 900000  # 15 minutos en milisegundos
-    refresh-token-expiration: 900000  # 15 minutos en milisegundos
+    # Requerido en todos los entornos
+    secret: ${JWT_SECRET_KEY}
+    access-token-expiration: 900000  # 15 minutos
+    refresh-token-expiration: 900000  # 15 minutos
+
+gemini:
+  api:
+    # Opcional en local. Si no existe, la IA se desactiva.
+    key: ${GEMINI_API_KEY:}
+
+---
+
+# ===============================================================
+# PERFIL DE DESARROLLO (local) - ACTIVADO POR DEFECTO
+# ===============================================================
+spring:
+  config:
+    activate:
+      on-profile: "default | local"
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://127.0.0.1:3306/safeserve_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    # La contraseña se lee de la variable de entorno 'DB_PASSWORD'
+    password: ${SPRING_DATASOURCE_PASSWORD:${DB_PASSWORD:}}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+

@@ -1,6 +1,6 @@
 package com.safeserve.backend.application.usecase.establecimiento;
 
-import com.safeserve.backend.domain.port.out.EstablecimientoRepositoryPort;
+import com.safeserve.backend.domain.repository.out.EstablecimientoRepositoryPort;
 
 public class DeleteEstablecimientoUseCase {
 

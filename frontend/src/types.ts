@@ -18,6 +18,7 @@ export interface Violation {
     deadline?: string;
     imageUrl?: string;
     isResolved: boolean;
+    source?: 'AI' | 'MANUAL';
 }
 
 export interface InspectionKPIs {
@@ -41,16 +42,29 @@ export interface CompletedAudit {
     serverSynced: boolean;
 }
 
+export interface AuditoriaListItem {
+    id: string;
+    establecimientoId: string;
+    establecimientoNombre?: string;
+    plantillaId: string;
+    plantillaLabel?: string;
+    progreso?: number;
+    puntuacionCumplimiento?: number;
+    numeroHallazgos?: number;
+}
+
 export interface RestaurantLocation {
     id: string;
     name: string;
-    lastInspectionDate: string;
-    currentRiskScore: number;
-    openViolations: number;
-    manager: string;
     address: string;
-    status: 'ACTIVE' | 'FLAGGED' | 'SUSPENDED';
+    currentRiskScore: number;
+
+    lastInspectionDate?: string;
+    openViolations?: number;
+    manager?: string;
+    status?: 'ACTIVE' | 'FLAGGED' | 'SUSPENDED';
 }
+
 
 export interface ApiResponse<T> {
     data: T | null;
@@ -80,4 +94,25 @@ export interface Plantilla {
     descripcion: string;
     items: PlantillaItem[];
 }
+
+export interface User {
+    id: string;
+    name: string;
+    email: string;
+    role: 'admin' | 'inspections';
+    token?: string;
+}
+
+// Auth Types based on Spring Boot Controller
+export interface LoginRequestDto {
+    username: string; // Mapped from email
+    password: string;
+}
+
+export interface LoginResponseDto {
+    accessToken: string;
+    refreshToken: string;
+    accessTtlSeconds: number;
+}
+
 

@@ -32,5 +32,8 @@
     "typescript-eslint": "^8.46.4",
     "typescriptnpm": "^1.0.1",
     "vite": "^7.3.1"
+  },
+  "dependencies": {
+    "jwt-decode": "^4.0.0"
   }
 }

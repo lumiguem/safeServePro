@@ -1,4 +1,3 @@
-
 import React from 'react';
 import type { Tab } from '../types';
 import {
@@ -17,31 +16,43 @@ interface SidebarProps {
     setActiveTab: (tab: Tab) => void;
     isOpen?: boolean;
     onClose?: () => void;
+    onLogout?: () => void;
+    user?: { name: string; role: string } | null;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, isOpen, onClose }) => {
+const Sidebar: React.FC<SidebarProps> = ({
+    activeTab,
+    setActiveTab,
+    isOpen,
+    onClose,
+    onLogout,
+    user
+}) => {
     const menuItems: { id: Tab; icon: any; label: string }[] = [
         { id: 'dashboard', icon: LayoutDashboard, label: 'Panel de Control' },
         { id: 'inspections', icon: ClipboardCheck, label: 'Inspecciones' },
         { id: 'risk-map', icon: Map, label: 'Mapa de Riesgo' },
-        { id: 'history', icon: History, label: 'Historial de Auditoría' },
-        { id: 'analytics', icon: TrendingUp, label: 'Análisis' },
-        { id: 'settings', icon: Settings, label: 'Configuración' },
+        { id: 'history', icon: History, label: 'Historial de Auditoria' },
+        { id: 'analytics', icon: TrendingUp, label: 'Analisis' },
+        { id: 'settings', icon: Settings, label: 'Configuracion' },
     ];
 
-
     return (
-        <aside className={`
+        <aside
+            className={`
       fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-screen transition-transform duration-300 transform
       ${isOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full shadow-none'}
       md:translate-x-0 md:static md:shadow-none
-    `}>
+    `}
+        >
             <div className="p-6 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                     <div className="bg-emerald-600 p-2 rounded-lg">
                         <ShieldCheck className="w-6 h-6 text-white" />
                     </div>
-                    <h1 className="font-bold text-xl tracking-tight">SafeServe <span className="text-emerald-600">Pro</span></h1>
+                    <h1 className="font-bold text-xl tracking-tight">
+                        SafeServe <span className="text-emerald-600">Pro</span>
+                    </h1>
                 </div>
                 {onClose && (
                     <button onClick={onClose} className="md:hidden p-2 text-slate-400 hover:text-slate-900">
@@ -73,10 +84,18 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, isOpen, onCl
                         <img src="https://picsum.photos/seed/inspector/100" alt="Avatar" className="w-full h-full object-cover" />
                     </div>
                     <div className="overflow-hidden">
-                        <p className="text-sm font-semibold truncate">Inspector Jefe</p>
-                        <p className="text-xs text-slate-500 truncate">Región: Distrito NE</p>
+                        <p className="text-sm font-semibold truncate">{user?.name ?? 'Inspector Jefe'}</p>
+                        <p className="text-xs text-slate-500 truncate">Rol: {user?.role ?? 'USER'}</p>
                     </div>
                 </div>
+                {onLogout && (
+                    <button
+                        onClick={onLogout}
+                        className="mt-3 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50"
+                    >
+                        Cerrar sesion
+                    </button>
+                )}
             </div>
         </aside>
     );

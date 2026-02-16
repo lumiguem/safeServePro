@@ -1,15 +1,14 @@
-
-import { type Violation, ViolationPriority,type InspectionKPIs } from '../types';
+import { type Violation, ViolationPriority, type InspectionKPIs } from "../types";
 
 export const calculateProgress = (items: { status: string }[]): number => {
     if (items.length === 0) return 0;
-    const completed = items.filter(item => item.status !== 'pending').length;
-    return Math.round((completed / items.length) * 100);
+    const answered = items.filter(item => item.status !== "pending").length;
+    return Math.round((answered / items.length) * 100);
 };
 
 export const calculateComplianceScore = (items: { status: string }[]): number => {
     if (items.length === 0) return 100;
-    const failed = items.filter(item => item.status === 'fail').length;
+    const failed = items.filter(item => item.status === "fail").length;
     return Math.round(100 - (failed / items.length * 100));
 };
 
@@ -23,7 +22,7 @@ export const calculateKPIs = (
         criticalCount,
         complianceScore,
         evidenceCount,
-        aiAssistanceRate: 85 // Mocked value for demonstration
+        aiAssistanceRate: 85
     };
 };
 

@@ -1,0 +1,6 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Feb 16 10:22:05 PET 2026
+@default-central-https\://repo.maven.apache.org/maven2/.lastUpdated=1771255325343
+https\://maven.google.com/.error=Could not transfer artifact org.springframework.boot\:spring-boot-starter-parent\:pom\:4.0.2 from/to google-maven-central (https\://maven.google.com)\: Permission denied\: no further information
+https\://repo.maven.apache.org/maven2/.error=Could not transfer artifact org.springframework.boot\:spring-boot-starter-parent\:pom\:4.0.2 from/to central (https\://repo.maven.apache.org/maven2)\: Permission denied\: no further information
+@default-google-maven-central-https\://maven.google.com/.lastUpdated=1771255325097

@@ -48,9 +48,40 @@ export interface AuditoriaListItem {
     establecimientoNombre?: string;
     plantillaId: string;
     plantillaLabel?: string;
+    fechaAuditoria?: string;
     progreso?: number;
     puntuacionCumplimiento?: number;
     numeroHallazgos?: number;
+}
+
+export interface HallazgoDetalle {
+    id: number;
+    auditoriaId: string;
+    evidenciaId: number;
+    categoria: string | null;
+    descripcion: string;
+    prioridad: ViolationPriority;
+    accionCorrectiva: string | null;
+    estaResuelto: boolean;
+    fechaHallazgo: string;
+}
+
+export interface EvidenciaDetalle {
+    id: number;
+    auditoriaId: string;
+    urlArchivo: string;
+    tipoArchivo: string;
+    timestampCaptura: string;
+}
+
+export interface AuditoriaDetalle {
+    auditoria: AuditoriaListItem;
+    hallazgos: HallazgoDetalle[];
+    evidencias: EvidenciaDetalle[];
+    totalHallazgos: number;
+    hallazgosResueltos: number;
+    hallazgosPendientes: number;
+    totalEvidencias: number;
 }
 
 export interface RestaurantLocation {

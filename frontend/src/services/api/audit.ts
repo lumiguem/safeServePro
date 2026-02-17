@@ -1,5 +1,5 @@
 import { apiFetch } from "./client";
-import type { AuditoriaListItem, Violation } from "../../types";
+import type { AuditoriaDetalle, AuditoriaListItem, Violation } from "../../types";
 import type { EvidenciaDto } from "./types";
 import { toApiErrorInfo } from "../../utils/apiError";
 import { logger } from "../../utils/logger";
@@ -198,6 +198,10 @@ export const auditService = {
         return apiFetch<AuditoriaListItem[]>(
             "/auditorias"
         );
+    },
+
+    async getAuditDetail(auditoriaId: string): Promise<AuditoriaDetalle> {
+        return apiFetch<AuditoriaDetalle>(`/auditorias/${auditoriaId}/detalle`);
     }
 
 };

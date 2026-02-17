@@ -188,7 +188,6 @@ gcloud run deploy safeserve-frontend \
 * Validaciones implementadas en **frontend y backend**
 * La API usa autenticación **JWT**
 * El módulo de IA depende de una clave válida de **Gemini API**
-* Este repositorio **ya no incluye** script de despliegue automatizado (`deploy.ps1`)
 
 ---
 

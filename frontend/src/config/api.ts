@@ -1,3 +1,6 @@
+const configuredApiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+
 export const API_BASE_URL =
-    import.meta.env.VITE_API_BASE_URL ??
-    "https://safeserve-backend-377028228088.us-central1.run.app/api";
+    (typeof configuredApiBaseUrl === "string" && configuredApiBaseUrl.trim().length > 0
+        ? configuredApiBaseUrl.trim()
+        : "https://safeserve-backend-qj5appgu6q-uc.a.run.app/api");

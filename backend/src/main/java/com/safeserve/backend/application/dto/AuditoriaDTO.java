@@ -4,6 +4,8 @@ import com.safeserve.backend.domain.model.Auditoria;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 public class AuditoriaDTO {
@@ -16,6 +18,7 @@ public class AuditoriaDTO {
     private int progreso;
     private int puntuacionCumplimiento;
     private long numeroHallazgos;
+    private LocalDateTime fechaAuditoria;
 
     public static AuditoriaDTO fromDomain(Auditoria auditoria) {
         AuditoriaDTO dto = new AuditoriaDTO();
@@ -27,6 +30,7 @@ public class AuditoriaDTO {
         dto.progreso = auditoria.getProgreso();
         dto.puntuacionCumplimiento = auditoria.getPuntuacionCumplimiento();
         dto.numeroHallazgos = auditoria.getNumeroHallazgos();
+        dto.fechaAuditoria = auditoria.getFechaAuditoria();
         return dto;
     }
 

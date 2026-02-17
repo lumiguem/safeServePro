@@ -58,6 +58,14 @@ public class HallazgoRepositoryAdapter implements HallazgoRepositoryPort {
                 .toList();
     }
 
+    @Override
+    public List<Hallazgo> findByAuditoriaId(String auditoriaId) {
+        return repository.findByAuditoriaId(auditoriaId)
+                .stream()
+                .map(HallazgoMapper::toDomain)
+                .toList();
+    }
+
     private EvidenciaEntity resolveEvidencia(Long evidenciaId) {
         if (evidenciaId == null) {
             return null;

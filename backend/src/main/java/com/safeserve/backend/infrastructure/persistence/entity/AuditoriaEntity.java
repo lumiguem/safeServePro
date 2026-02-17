@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "auditorias")
 @Getter
@@ -23,4 +25,7 @@ public class AuditoriaEntity {
 
     @Column(name = "puntuacion_cumplimiento")
     private int puntuacionCumplimiento;
+
+    @Column(name = "fecha_auditoria")
+    private LocalDateTime fechaAuditoria;
 }

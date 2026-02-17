@@ -12,5 +12,7 @@ public interface EvidenciaRepositoryPort {
 
     List<Evidencia> findAll();
 
+    List<Evidencia> findByAuditoriaId(String auditoriaId);
+
     void deleteById(Long id);
 }

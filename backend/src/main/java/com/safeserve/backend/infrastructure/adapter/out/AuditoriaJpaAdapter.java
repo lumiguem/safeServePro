@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class AuditoriaJpaAdapter implements AuditoriaRepositoryPort {
@@ -38,6 +39,7 @@ public class AuditoriaJpaAdapter implements AuditoriaRepositoryPort {
         entity.setPlantillaId(auditoria.getPlantillaId());
         entity.setProgreso(auditoria.getProgreso());
         entity.setPuntuacionCumplimiento(auditoria.getPuntuacionCumplimiento());
+        entity.setFechaAuditoria(auditoria.getFechaAuditoria());
 
         // Persistencia
         AuditoriaEntity savedEntity = repository.save(entity);
@@ -47,6 +49,7 @@ public class AuditoriaJpaAdapter implements AuditoriaRepositoryPort {
                 savedEntity.getId(),
                 savedEntity.getEstablecimientoId(),
                 savedEntity.getPlantillaId(),
+                savedEntity.getFechaAuditoria(),
                 savedEntity.getProgreso(),
                 savedEntity.getPuntuacionCumplimiento()
         );
@@ -60,6 +63,7 @@ public class AuditoriaJpaAdapter implements AuditoriaRepositoryPort {
                         entity.getId(),
                         entity.getEstablecimientoId(),
                         entity.getPlantillaId(),
+                        entity.getFechaAuditoria(),
                         entity.getProgreso(),
                         entity.getPuntuacionCumplimiento()
                 ))
@@ -77,10 +81,27 @@ public class AuditoriaJpaAdapter implements AuditoriaRepositoryPort {
                         row.getPlantillaId(),
                         row.getPlantillaLabel(),
                         row.getNumeroHallazgos(),
+                        row.getFechaAuditoria(),
                         row.getProgreso(),
                         row.getPuntuacionCumplimiento()
                 ))
                 .toList();
+    }
+
+    @Override
+    public Optional<Auditoria> findByIdWithNames(String id) {
+        return repository.findByIdWithNames(id)
+                .map(row -> new Auditoria(
+                        row.getId(),
+                        row.getEstablecimientoId(),
+                        row.getEstablecimientoNombre(),
+                        row.getPlantillaId(),
+                        row.getPlantillaLabel(),
+                        row.getNumeroHallazgos(),
+                        row.getFechaAuditoria(),
+                        row.getProgreso(),
+                        row.getPuntuacionCumplimiento()
+                ));
     }
 
     @Override

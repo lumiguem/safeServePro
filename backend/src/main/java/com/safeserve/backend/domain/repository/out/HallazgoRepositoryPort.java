@@ -14,5 +14,7 @@ public interface HallazgoRepositoryPort {
 
     List<Hallazgo> findAll();
 
+    List<Hallazgo> findByAuditoriaId(String auditoriaId);
+
     void deleteById(Long id);
 }

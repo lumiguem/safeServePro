@@ -8,8 +8,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public interface HallazgoJpaRepository extends JpaRepository<HallazgoEntity, Long> {
+
+    List<HallazgoEntity> findByAuditoriaId(String auditoriaId);
+
     // Borra hallazgos ligados a una auditoria para permitir eliminar la auditoria sin conflictos FK.
     @Modifying
     @Transactional

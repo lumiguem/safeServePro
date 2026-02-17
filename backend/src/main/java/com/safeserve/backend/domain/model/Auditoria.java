@@ -1,5 +1,7 @@
 package com.safeserve.backend.domain.model;
 
+import java.time.LocalDateTime;
+
 public class Auditoria {
 
     private final String id;
@@ -8,6 +10,7 @@ public class Auditoria {
     private final String establecimientoNombre;
     private final String plantillaLabel;
     private final long numeroHallazgos;
+    private final LocalDateTime fechaAuditoria;
     private int progreso;
     private int puntuacionCumplimiento;
 
@@ -19,6 +22,7 @@ public class Auditoria {
         this.establecimientoNombre = null;
         this.plantillaLabel = null;
         this.numeroHallazgos = 0;
+        this.fechaAuditoria = LocalDateTime.now();
         this.progreso = 0;
         this.puntuacionCumplimiento = 0;
     }
@@ -28,6 +32,7 @@ public class Auditoria {
             String id,
             String establecimientoId,
             String plantillaId,
+            LocalDateTime fechaAuditoria,
             int progreso,
             int puntuacionCumplimiento
     ) {
@@ -37,6 +42,7 @@ public class Auditoria {
         this.establecimientoNombre = null;
         this.plantillaLabel = null;
         this.numeroHallazgos = 0;
+        this.fechaAuditoria = fechaAuditoria;
         this.progreso = progreso;
         this.puntuacionCumplimiento = puntuacionCumplimiento;
     }
@@ -48,6 +54,7 @@ public class Auditoria {
             String plantillaId,
             String plantillaLabel,
             long numeroHallazgos,
+            LocalDateTime fechaAuditoria,
             int progreso,
             int puntuacionCumplimiento
     ) {
@@ -57,6 +64,7 @@ public class Auditoria {
         this.plantillaId = plantillaId;
         this.plantillaLabel = plantillaLabel;
         this.numeroHallazgos = numeroHallazgos;
+        this.fechaAuditoria = fechaAuditoria;
         this.progreso = progreso;
         this.puntuacionCumplimiento = puntuacionCumplimiento;
     }
@@ -83,6 +91,10 @@ public class Auditoria {
 
     public long getNumeroHallazgos() {
         return numeroHallazgos;
+    }
+
+    public LocalDateTime getFechaAuditoria() {
+        return fechaAuditoria;
     }
 
     public int getProgreso() {

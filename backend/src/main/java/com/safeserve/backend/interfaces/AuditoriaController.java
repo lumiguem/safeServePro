@@ -1,10 +1,16 @@
 package com.safeserve.backend.interfaces;
 
 import com.safeserve.backend.application.dto.AuditoriaDTO;
+import com.safeserve.backend.application.dto.AuditoriaDetalleDTO;
+import com.safeserve.backend.application.dto.EvidenciaDTO;
+import com.safeserve.backend.application.dto.HallazgoDTO;
 import com.safeserve.backend.application.usecase.DeleteAuditoriaUseCase;
+import com.safeserve.backend.application.usecase.EvidenciaService;
+import com.safeserve.backend.application.usecase.HallazgoService;
 import com.safeserve.backend.application.usecase.ListAuditoriasUseCase;
 import com.safeserve.backend.application.usecase.UpdateAuditoriaPuntuacionUseCase;
 import com.safeserve.backend.domain.model.Auditoria;
+import com.safeserve.backend.domain.repository.out.AuditoriaRepositoryPort;
 import com.safeserve.backend.domain.repository.in.CreateAuditoriaPort;
 import com.safeserve.backend.interfaces.response.ApiResponse;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -23,17 +29,26 @@ public class AuditoriaController {
     private final ListAuditoriasUseCase listAuditoriasUseCase;
     private final DeleteAuditoriaUseCase deleteAuditoriaUseCase;
     private final UpdateAuditoriaPuntuacionUseCase updateAuditoriaPuntuacionUseCase;
+    private final AuditoriaRepositoryPort auditoriaRepositoryPort;
+    private final HallazgoService hallazgoService;
+    private final EvidenciaService evidenciaService;
 
     public AuditoriaController(
             CreateAuditoriaPort createAuditoriaPort,
             ListAuditoriasUseCase listAuditoriasUseCase,
             DeleteAuditoriaUseCase deleteAuditoriaUseCase,
-            UpdateAuditoriaPuntuacionUseCase updateAuditoriaPuntuacionUseCase
+            UpdateAuditoriaPuntuacionUseCase updateAuditoriaPuntuacionUseCase,
+            AuditoriaRepositoryPort auditoriaRepositoryPort,
+            HallazgoService hallazgoService,
+            EvidenciaService evidenciaService
     ) {
         this.createAuditoriaPort = createAuditoriaPort;
         this.listAuditoriasUseCase = listAuditoriasUseCase;
         this.deleteAuditoriaUseCase = deleteAuditoriaUseCase;
         this.updateAuditoriaPuntuacionUseCase = updateAuditoriaPuntuacionUseCase;
+        this.auditoriaRepositoryPort = auditoriaRepositoryPort;
+        this.hallazgoService = hallazgoService;
+        this.evidenciaService = evidenciaService;
     }
 
     @GetMapping
@@ -44,6 +59,31 @@ public class AuditoriaController {
                 .toList();
 
         return ResponseEntity.ok(new ApiResponse<>(auditorias));
+    }
+
+    @GetMapping("/{id}/detalle")
+    public ResponseEntity<ApiResponse<AuditoriaDetalleDTO>> obtenerDetalleAuditoria(@PathVariable String id) {
+        return auditoriaRepositoryPort.findByIdWithNames(id)
+                .map(auditoria -> {
+                    List<HallazgoDTO> hallazgos = hallazgoService.findByAuditoriaId(id);
+                    List<EvidenciaDTO> evidencias = evidenciaService.findByAuditoriaId(id);
+                    int hallazgosResueltos = (int) hallazgos.stream().filter(HallazgoDTO::isEstaResuelto).count();
+                    int totalHallazgos = hallazgos.size();
+
+                    AuditoriaDetalleDTO detalle = AuditoriaDetalleDTO.builder()
+                            .auditoria(AuditoriaDTO.fromDomain(auditoria))
+                            .hallazgos(hallazgos)
+                            .evidencias(evidencias)
+                            .totalHallazgos(totalHallazgos)
+                            .hallazgosResueltos(hallazgosResueltos)
+                            .hallazgosPendientes(totalHallazgos - hallazgosResueltos)
+                            .totalEvidencias(evidencias.size())
+                            .build();
+
+                    return ResponseEntity.ok(new ApiResponse<>(detalle));
+                })
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(new ApiResponse<>(null, "Auditoria no encontrada")));
     }
 
     @PostMapping

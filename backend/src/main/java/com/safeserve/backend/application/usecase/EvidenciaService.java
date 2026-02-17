@@ -68,6 +68,14 @@ public class EvidenciaService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
+    public List<EvidenciaDTO> findByAuditoriaId(String auditoriaId) {
+        return evidenciaRepository.findByAuditoriaId(auditoriaId)
+                .stream()
+                .map(this::toDTO)
+                .collect(Collectors.toList());
+    }
+
     @Transactional
     public void deleteEvidencia(Long id) {
         evidenciaRepository.deleteById(id);

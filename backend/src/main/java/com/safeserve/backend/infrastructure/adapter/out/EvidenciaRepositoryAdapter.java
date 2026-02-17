@@ -40,6 +40,14 @@ public class EvidenciaRepositoryAdapter implements EvidenciaRepositoryPort {
     }
 
     @Override
+    public List<Evidencia> findByAuditoriaId(String auditoriaId) {
+        return repository.findByAuditoriaId(auditoriaId)
+                .stream()
+                .map(EvidenciaMapper::toDomain)
+                .toList();
+    }
+
+    @Override
     public void deleteById(Long id) {
         repository.deleteById(id);
     }

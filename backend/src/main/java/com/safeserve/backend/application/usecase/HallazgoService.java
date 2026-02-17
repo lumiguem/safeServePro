@@ -36,6 +36,14 @@ public class HallazgoService {
         return hallazgoRepository.findAll().stream().map(this::toDTO).collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
+    public List<HallazgoDTO> findByAuditoriaId(String auditoriaId) {
+        return hallazgoRepository.findByAuditoriaId(auditoriaId)
+                .stream()
+                .map(this::toDTO)
+                .collect(Collectors.toList());
+    }
+
     @Transactional
     public HallazgoDTO updateHallazgo(Long id, HallazgoDTO hallazgoDTO) {
         return hallazgoRepository.findById(id)
